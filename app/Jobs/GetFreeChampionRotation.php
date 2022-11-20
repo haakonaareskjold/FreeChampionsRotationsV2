@@ -1,29 +1,41 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Jobs;
 
-use Illuminate\Support\Collection;
+use App\Models\FreeChampionRotation;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldBeUnique;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Http;
 
-class ChampionRotationsController extends Controller
+class GetFreeChampionRotation implements ShouldQueue
 {
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
+
     /**
-     * Maps champions IDs to the ones that are in the free champion rotation and pushes them into a collection.
+     * Execute the job.
+     * Map champions IDs to the ones that are in the free champion rotation and pushes them into a collection.
      *
-     * @return Collection
+     * @return void
      */
-    public function getChampionsInRotation(): Collection {
+    public function handle(): void {
         $champions = $this->getChampions();
         $championsIDsInRotation = $this->getChampionsIDsInRotation();
-        $collection = Collection::make();
 
+        $freeChampionRotation = new FreeChampionRotation();
+        $championNames = null;
         foreach ($champions as $champion) {
             if (in_array($champion['key'], $championsIDsInRotation)) {
-                $collection->push($champion['name']);
+                $championNames[] = $champion['name'];
             }
         }
 
-        return $collection;
+        $freeChampionRotation->champions = json_encode($championNames, JSON_THROW_ON_ERROR);
+        $freeChampionRotation->save();
     }
 
     /**
