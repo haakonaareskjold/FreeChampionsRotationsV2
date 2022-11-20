@@ -12,4 +12,8 @@ class FreeChampionRotation extends Model
     protected $fillable = [
         'champions',
     ];
+
+    protected $casts = [
+        'champions' => 'array',
+    ];
 }

@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Models\FreeChampionRotation;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,3 +14,9 @@
 |
 */
 
+Route::get('/getchampions', function() {
+    $freechampions =FreeChampionRotation::query()->get('champions')->firstOrFail()->champions;
+    return view('championrotation', [
+        'freeChampions' => $freechampions
+    ]);
+});

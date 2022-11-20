@@ -10,3 +10,10 @@
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+use Illuminate\Support\Facades\Route;
+use App\Models\FreeChampionRotation;
+
+Route::get('/getchampions', static function() {
+    return FreeChampionRotation::query()->get('champions')->firstOrFail();
+});
