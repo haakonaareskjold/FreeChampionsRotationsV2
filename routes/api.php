@@ -1,8 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,6 +11,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+use Illuminate\Support\Facades\Route;
+use App\Models\FreeChampionRotation;
+
+Route::get('/getchampions', static function() {
+    return json_decode(FreeChampionRotation::query()->get('champions')->firstOrFail()->champions, true);
 });

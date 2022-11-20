@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\FreeChampionRotation;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/getchampions', function() {
+    return view('championrotation', [
+        'champions' => json_decode(FreeChampionRotation::query()->get('champions')->firstOrFail()->champions, true)
+    ]);
 });
