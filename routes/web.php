@@ -14,9 +14,8 @@ use App\Models\FreeChampionRotation;
 |
 */
 
-Route::get('/getchampions', function() {
-    $freechampions =FreeChampionRotation::query()->get('champions')->firstOrFail()->champions;
+Route::get('/getchampions', static function() {
     return view('championrotation', [
-        'freeChampions' => $freechampions
+        'freeChampions' => FreeChampionRotation::query()->get('champions')->firstOrFail()->champions
     ]);
 });
