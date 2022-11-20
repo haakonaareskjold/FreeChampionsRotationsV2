@@ -6,18 +6,20 @@
     @vite('resources/css/app.css')
 </head>
 <body>
-<div class="flex justify-between flex-wrap bg-slate-300">
-@foreach($champions as $champion)
-    <div class="max-w-sm w-full rounded overflow-hidden shadow-lg m-4">
-                <img class="w-full" src="{{$champion['imageUrl']}}" alt="{{$champion['title']}}">
-                <div class="px-6 py-4 bg-slate-200">
-                    <div class="font-bold text-xl mb-2">{{$champion['name']}}</div>
-                    <p class="text-gray-700 text-base">
-                        {{$champion['blurb']}}
-                    </p>
-                </div>
+    <div class="flex flex-wrap justify-evenly">
+        @foreach($champions as $champion)
+        <div class="max-w-sm rounded overflow-hidden shadow-lg m-4">
+            <a href="#" data-mdb-ripple="true" data-mdb-ripple-color="light">
+                <img class="object-contain h-48 w-full" src="{{$champion['imageUrl']}}" alt="{{$champion['title']}}"/>
+            </a>
+            <div class="p-6">
+                <h5 class="text-gray-900 text- font-medium mb-2">{{$champion['name']}}</h5>
+                <p class="text-gray-700 text-base mb-4">
+                    {{$champion['blurb']}}
+                </p>
+            </div>
+        </div>
+        @endforeach
     </div>
-@endforeach
-</div>
 </body>
 </html>

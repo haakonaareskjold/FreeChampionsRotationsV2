@@ -29,7 +29,7 @@ class GetFreeChampionRotation implements ShouldQueue
         $champions = null;
         foreach ($championList as $champion) {
             if (in_array($champion['key'], $championsIDsInRotation)) {
-                $champions[$champion['name']] = [
+                $champions[$champion['id']] = [
                     'name' => $champion['name'],
                     'title' => $champion['title'],
                     'blurb' => $champion['blurb'],
