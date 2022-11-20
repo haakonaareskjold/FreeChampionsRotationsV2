@@ -8,7 +8,7 @@
 <body>
 <div class="flex justify-between flex-wrap bg-slate-300">
 @foreach($champions as $champion)
-    <div class="w-48  mx-auto  overflow-hidden">
+    <div class="max-w-sm w-full rounded overflow-hidden shadow-lg m-4">
                 <img class="w-full" src="{{$champion['imageUrl']}}" alt="{{$champion['title']}}">
                 <div class="px-6 py-4 bg-slate-200">
                     <div class="font-bold text-xl mb-2">{{$champion['name']}}</div>
