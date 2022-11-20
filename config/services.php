@@ -30,4 +30,9 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+
+    'riotgames' => [
+        'token' => env('RGAPI_TOKEN'),
+        'url' => env('RGAPI_BASE_URL', 'https://euw1.api.riotgames.com/lol/platform/v3/champion-rotations'),
+    ],
 ];
