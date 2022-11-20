@@ -15,5 +15,5 @@ use Illuminate\Support\Facades\Route;
 use App\Models\FreeChampionRotation;
 
 Route::get('/getchampions', static function() {
-    return FreeChampionRotation::query()->get('champions')->firstOrFail();
+    return json_decode(FreeChampionRotation::query()->get('champions')->firstOrFail()->champions, true);
 });

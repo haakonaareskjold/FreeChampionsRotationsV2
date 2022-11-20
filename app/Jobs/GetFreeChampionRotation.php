@@ -4,7 +4,6 @@ namespace App\Jobs;
 
 use App\Models\FreeChampionRotation;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -23,18 +22,23 @@ class GetFreeChampionRotation implements ShouldQueue
      * @return void
      */
     public function handle(): void {
-        $champions = $this->getChampions();
+        $championList = $this->getChampions();
         $championsIDsInRotation = $this->getChampionsIDsInRotation();
 
         $freeChampionRotation = new FreeChampionRotation();
-        $championNames = null;
-        foreach ($champions as $champion) {
+        $champions = null;
+        foreach ($championList as $champion) {
             if (in_array($champion['key'], $championsIDsInRotation)) {
-                $championNames[] = $champion['name'];
+                $champions[$champion['name']] = [
+                    'name' => $champion['name'],
+                    'title' => $champion['title'],
+                    'blurb' => $champion['blurb'],
+                    'imageUrl' => $this->getChampionImageUrl($champion['image']['full']),
+                ];
             }
         }
 
-        $freeChampionRotation->champions = json_encode($championNames, JSON_THROW_ON_ERROR);
+        $freeChampionRotation->champions = json_encode($champions, JSON_THROW_ON_ERROR);
         $freeChampionRotation->save();
     }
 
@@ -63,11 +67,21 @@ class GetFreeChampionRotation implements ShouldQueue
     }
 
     /**
-     * Returns the most recent patch
+     * Returns the most recent patch.
      *
      * @return string|null
      */
     private function getMostRecentPatch(): ?string {
         return Http::get('https://ddragon.leagueoflegends.com/api/versions.json')->json(0);
+    }
+
+    /**
+     *
+     *
+     * @param string $championName Name of the champion with file extension, string to URL.
+     * @return string
+     */
+    private function getChampionImageUrl(string $championName): string {
+        return "https://ddragon.leagueoflegends.com/cdn/{$this->getMostRecentPatch()}/img/champion/$championName";
     }
 }
