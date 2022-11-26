@@ -17,8 +17,8 @@ class FreeChampionRotationTest extends TestCase
      */
     public function test_if_model_exists_in_database()
     {
-        FreeChampionRotation::factory()->create();
-        $this->assertDatabaseCount('free_champion_rotations', 1);
+        $freeChampionRotation = FreeChampionRotation::factory()->create();
+        $this->assertModelExists($freeChampionRotation);
     }
 
     public function test_if_data_can_be_fetched_from_model_and_has_correct_structure()
