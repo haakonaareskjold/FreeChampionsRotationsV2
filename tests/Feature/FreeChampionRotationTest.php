@@ -21,7 +21,7 @@ class FreeChampionRotationTest extends TestCase
         $this->assertDatabaseCount('free_champion_rotations', 1);
     }
 
-    public function test_if_data_can_be_fetched_from_model()
+    public function test_if_data_can_be_fetched_from_model_and_has_correct_structure()
     {
         FreeChampionRotation::factory()->create();
 
