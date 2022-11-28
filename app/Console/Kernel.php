@@ -2,7 +2,7 @@
 
 namespace App\Console;
 
-use App\Jobs\GetFreeChampionRotation;
+use App\Jobs\FreeChampionRotationJob;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -16,7 +16,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule) {
         // Fetch FreeChampions every tuesday at 02:01 AM
-        $schedule->job(new GetFreeChampionRotation())->weeklyOn(2, '02:01');
+        $schedule->job(new FreeChampionRotationJob())->weeklyOn(2, '02:01');
     }
 
     /**
