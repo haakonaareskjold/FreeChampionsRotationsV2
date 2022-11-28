@@ -10,6 +10,5 @@ https://github.com/haakonaareskjold/FreeChampionRotations
 * Riot games API
 
 ### todos remaining:
-* darkmode
 * more test coverage
 * ci/cd (github actions?)
