@@ -16,6 +16,6 @@ use App\Models\FreeChampionRotation;
 
 Route::get('/', function() {
     return view('championrotation', [
-        'champions' => json_decode(FreeChampionRotation::query()->get('champions')->firstOrFail()->champions, true)
+        'champions' => json_decode(FreeChampionRotation::query()->get('champions')->last()->champions, true)
     ]);
 });
