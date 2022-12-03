@@ -1,5 +1,7 @@
 # FreeChampionRotationsV2
 
+[![FreeChampionRotationsV2](https://github.com/haakonaareskjold/FreeChampionsRotationsV2/actions/workflows/build.yml/badge.svg)](https://github.com/haakonaareskjold/FreeChampionsRotationsV2/actions/workflows/build.yml)
+
 Redoing this older project, but now in Laravel fashion:
 https://github.com/haakonaareskjold/FreeChampionRotations
 
@@ -8,7 +10,3 @@ https://github.com/haakonaareskjold/FreeChampionRotations
 * Vite/Tailwind
 * Mysql
 * Riot games API
-
-### todos remaining:
-* more test coverage
-* ci/cd (github actions?)
