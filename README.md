@@ -10,3 +10,4 @@ https://github.com/haakonaareskjold/FreeChampionRotations
 * Vite/Tailwind
 * Mysql
 * Riot games API
+* Github actions for CI/CD
