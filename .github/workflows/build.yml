@@ -80,4 +80,4 @@ jobs:
       - name: reload nginx
         run: docker exec freechampionsrotationsv2-nginx-1 nginx -s reload
       - name: echo newest version to file
-        run: echo "${{ github.sha }}-${{ github.run_id }}" >> ${{ github.workspace }}/mostrecent
+        run: echo "${{ github.sha }}-${{ github.run_id }}" > ${{ github.workspace }}/mostrecent
