@@ -80,7 +80,7 @@ class FreeChampionRotationTest extends TestCase
     public function test_if_job_can_run_at_scheduled_time()
     {
        Bus::fake();
-       $this->travelTo(now()->startOfWeek()->days(1)->setTime(02, 01));
+       $this->travelTo(now()->startOfWeek()->nextWeekday()->setTime(02, 01));
        $this->artisan('schedule:run');
 
        Bus::assertDispatched(FreeChampionRotationJob::class);
