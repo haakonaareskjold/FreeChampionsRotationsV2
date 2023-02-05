@@ -24,9 +24,9 @@ class CheckFreeChampionRotations extends Command
     protected $description = 'Check if there exist records for the FreeChampionRotation model';
 
 
-    public function handle()
+    public function handle(FreeChampionRotation $freeChampionRotation)
     {
-        if (!FreeChampionRotation::query()->exists()) {
+        if (!$freeChampionRotation::query()->exists()) {
             Bus::dispatch(new FreeChampionRotationJob());
         }
     }
